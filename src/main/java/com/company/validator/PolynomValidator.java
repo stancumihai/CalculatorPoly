@@ -18,9 +18,6 @@ public class PolynomValidator {
         if (checkIfNotCorrect(theRegex, polynom)) {
             throw new NotValidDataEntered("Invalid arrangement of the polynom");
         }
-        if (checkIfStringIsEmpty(polynom)) {
-            throw new NotValidDataEntered("String should not be empty");
-        }
     }
 
     public boolean checkIfNotCorrect(String theRegex, String stringToCheck) {
@@ -74,9 +71,5 @@ public class PolynomValidator {
                 return true;
         }
         return false;
-    }
-
-    public boolean checkIfStringIsEmpty(String polynom) {
-        return polynom.isEmpty();
     }
 }
