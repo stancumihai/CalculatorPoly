@@ -261,7 +261,6 @@ public class PolyCalcView extends JFrame {
     }
 
     public void addButtonListener(ActionListener buttonListener) {
-
         one.addActionListener(buttonListener);
         two.addActionListener(buttonListener);
         three.addActionListener(buttonListener);
