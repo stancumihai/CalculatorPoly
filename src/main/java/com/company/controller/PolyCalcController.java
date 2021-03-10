@@ -1,6 +1,7 @@
 package com.company.controller;
 
 import com.company.exception.NotValidDataEntered;
+import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;
 import com.company.model.operations.*;
 import com.company.utils.PolynomDisplay;
@@ -20,12 +21,13 @@ public class PolyCalcController {
 
     private final PolyCalcView polyCalcView;
     private final PolynomValidator polynomValidator;
+    private final PolyCalcModel polyCalcModel;
 
-
-    public PolyCalcController(PolyCalcView polyCalcView, PolynomValidator polynomValidator) {
+    public PolyCalcController(PolyCalcView polyCalcView, PolynomValidator polynomValidator, PolyCalcModel polyCalcModel) {
 
         this.polyCalcView = polyCalcView;
         this.polynomValidator = polynomValidator;
+        this.polyCalcModel = polyCalcModel;
 
         this.polyCalcView.addButtonListener(new ButtonListener());
         this.polyCalcView.addClearListener(new ClearListener());

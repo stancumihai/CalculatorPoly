@@ -44,36 +44,36 @@ public class IntegrationTest implements AbstractValidate {
         Integration integration = new Integration(result);
         integration.calculate(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "2X+1");
+        Assertions.assertEquals(str, "0.33X^3+0.50X^2");
     }
 
     @Test
     public void test2() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
         Polynomial result = new Polynomial(new ArrayList<>(5));
         Integration integration = new Integration(result);
         integration.calculate(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "2X+1");
+        Assertions.assertEquals(str, "-0.50X^2");
     }
 
     @Test
     public void test3() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input10);
         Polynomial result = new Polynomial(new ArrayList<>(5));
         Integration integration = new Integration(result);
         integration.calculate(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "2X+1");
+        Assertions.assertEquals(str, "-X");
     }
 
     @Test
     public void test4() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input12);
         Polynomial result = new Polynomial(new ArrayList<>(5));
         Integration integration = new Integration(result);
         integration.calculate(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "2X+1");
+        Assertions.assertEquals(str, "0");
     }
 }

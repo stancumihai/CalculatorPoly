@@ -38,12 +38,12 @@ public class DerivationTest implements AbstractValidate {
 
     @Test
     public void test1() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input1);
         Polynomial result = new Polynomial(new ArrayList<>(5));
         Derivation derivation = new Derivation(result);
         derivation.calculate(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "2X+1");
+        Assertions.assertEquals(str, "4.5X^2+1");
     }
 
     @Test
@@ -63,7 +63,7 @@ public class DerivationTest implements AbstractValidate {
         Derivation derivation = new Derivation(result);
         derivation.calculate(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "1");
+        Assertions.assertEquals(str, "0");
     }
 
     @Test
@@ -73,7 +73,7 @@ public class DerivationTest implements AbstractValidate {
         Derivation derivation = new Derivation(result);
         derivation.calculate(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "2+X^-1+X^-5");
+        Assertions.assertEquals(str, "-X^-2-5X^-6");
     }
 
 }

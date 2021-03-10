@@ -15,15 +15,14 @@ public class Division extends AbstractOperationClass<Polynomial> {
 
 
     @Override
-    public void calculate(@org.jetbrains.annotations.NotNull Polynomial polynom1, @org.jetbrains.annotations.NotNull Polynomial polynom2) {
+    public void calculate( Polynomial polynom1, Polynomial polynom2) {
 
         while (polynom1.getPolynom().get(0).getExponent() >= polynom2.getPolynom().get(0).getExponent()) {
 
             double exponent = polynom1.getPolynom().get(0).getExponent() - polynom2.getPolynom().get(0).getExponent();
             double coefficient = polynom1.getPolynom().get(0).getCoefficient() /
                     polynom2.getPolynom().get(0).getCoefficient();
-            System.out.println(exponent);
-            System.out.println(coefficient);
+
             Polynomial polynomForMultiplication = new Polynomial(new ArrayList<>(2));
             polynomForMultiplication.getPolynom().add(new Monomial(coefficient, exponent));
 

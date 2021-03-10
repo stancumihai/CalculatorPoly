@@ -1,6 +1,7 @@
 package validateOperations;
 
 import com.company.model.Polynomial;
+import com.company.model.operations.Addition;
 import com.company.utils.PolynomDisplay;
 import com.company.utils.Regex;
 import com.company.utils.StringToPolynomConverter;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public class AdditionTest implements AbstractValidate {
 
-    String string = "x^2 +x";
+    String string = "x^2+x";
     String input1 = "1.5x^3+x";
     String input2 = "-x";
     String input3 = "x^2";
@@ -24,7 +25,7 @@ public class AdditionTest implements AbstractValidate {
     String input10 = "-1";
     String input11 = "2";
     String input12 = "x^-1+x^-5";
-    
+
     @Override
     @Test
     public void validate() {
@@ -40,7 +41,7 @@ public class AdditionTest implements AbstractValidate {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
         Polynomial result = new Polynomial(new ArrayList<>(5));
-        com.company.model.operations.Addition addition = new com.company.model.operations.Addition(result);
+        Addition addition = new Addition(result);
         addition.calculate(polynomial1, polynomial2);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
         Assertions.assertEquals(str, "X^2");
@@ -51,7 +52,7 @@ public class AdditionTest implements AbstractValidate {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input3);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input3);
         Polynomial result = new Polynomial(new ArrayList<>(5));
-        com.company.model.operations.Addition addition = new com.company.model.operations.Addition(result);
+        Addition addition = new Addition(result);
         addition.calculate(polynomial1, polynomial2);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
         Assertions.assertEquals(str, "2X^2");
@@ -62,7 +63,7 @@ public class AdditionTest implements AbstractValidate {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input10);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input11);
         Polynomial result = new Polynomial(new ArrayList<>(5));
-        com.company.model.operations.Addition addition = new com.company.model.operations.Addition(result);
+        Addition addition = new Addition(result);
         addition.calculate(polynomial1, polynomial2);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
         Assertions.assertEquals(str, "1");
@@ -73,10 +74,9 @@ public class AdditionTest implements AbstractValidate {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input12);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input11);
         Polynomial result = new Polynomial(new ArrayList<>(5));
-        com.company.model.operations.Addition addition = new com.company.model.operations.Addition(result);
+        Addition addition = new Addition(result);
         addition.calculate(polynomial1, polynomial2);
         String str = PolynomDisplay.constructFromStringToPolynom(result);
         Assertions.assertEquals(str, "2+X^-1+X^-5");
     }
-
 }

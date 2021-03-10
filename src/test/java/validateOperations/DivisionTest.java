@@ -1,10 +1,7 @@
 package validateOperations;
 
 import com.company.model.Polynomial;
-import com.company.model.operations.Derivation;
 import com.company.model.operations.Division;
-import com.company.model.operations.Subtraction;
-import com.company.utils.PolynomDisplay;
 import com.company.utils.Regex;
 import com.company.utils.StringToPolynomConverter;
 import org.junit.jupiter.api.Assertions;
@@ -18,8 +15,8 @@ public class DivisionTest implements AbstractValidate {
     String input1 = "1.5x^3+x";
     String input2 = "-x";
     String input3 = "x^2";
-    String input5 = "-2x";
     String input4 = "-2x^2";
+    String input5 = "-2x";
     String input6 = "-2";
     String input7 = "2x^-2";
     String input8 = "x^3-x^4";
@@ -41,34 +38,31 @@ public class DivisionTest implements AbstractValidate {
     @Test
     public void test1() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
-        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
+        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input1);
         Polynomial result = new Polynomial(new ArrayList<>(5));
         Division division = new Division(result);
-        division.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "X^2");
+        String str=division.giveFinalResult(polynomial1, polynomial2);
+        Assertions.assertEquals(str, "0   Rest:(X^2+X/1.50X^3+X)");
     }
 
     @Test
     public void test2() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
-        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
+        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input3);
         Polynomial result = new Polynomial(new ArrayList<>(5));
         Division division = new Division(result);
-        division.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "X^2");
+        String str=division.giveFinalResult(polynomial1, polynomial2);
+        Assertions.assertEquals(str, "0   Rest:(-X/X^2)");
     }
 
     @Test
     public void test3() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
-        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input6);
+        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input8);
         Polynomial result = new Polynomial(new ArrayList<>(5));
         Division division = new Division(result);
-        division.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "X^2");
+        String str=division.giveFinalResult(polynomial1, polynomial2);
+        Assertions.assertEquals(str, "0   Rest:(-2/X^3-X^4)");
     }
 
     @Test
@@ -77,8 +71,7 @@ public class DivisionTest implements AbstractValidate {
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
         Polynomial result = new Polynomial(new ArrayList<>(5));
         Division division = new Division(result);
-        division.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
-        Assertions.assertEquals(str, "X^2");
+        String str=division.giveFinalResult(polynomial1, polynomial2);
+        Assertions.assertEquals(str, "-X-1");
     }
 }
