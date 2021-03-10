@@ -1,5 +1,6 @@
 package validateOperations;
 
+import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;
 import com.company.model.operations.Subtraction;
 import com.company.utils.PolynomDisplay;
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class SubtractionTest implements AbstractValidate {
+
+    private final PolyCalcModel polyCalcModel = new PolyCalcModel();
 
     String string = "x^2 +x";
     String input1 = "1.5x^3+x";
@@ -40,10 +43,9 @@ public class SubtractionTest implements AbstractValidate {
     public void test1() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Subtraction subtraction = new Subtraction(result);
-        subtraction.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        polyCalcModel.subtraction(polynomial1, polynomial2);
+        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
         Assertions.assertEquals(str, "X^2+2X");
     }
 
@@ -51,10 +53,9 @@ public class SubtractionTest implements AbstractValidate {
     public void test2() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input4);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input12);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Subtraction subtraction = new Subtraction(result);
-        subtraction.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        polyCalcModel.subtraction(polynomial1, polynomial2);
+        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
         Assertions.assertEquals(str, "-2X^2-X^-1-X^-5");
     }
 
@@ -62,10 +63,9 @@ public class SubtractionTest implements AbstractValidate {
     public void test3() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input7);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input9);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Subtraction subtraction = new Subtraction(result);
-        subtraction.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        polyCalcModel.subtraction(polynomial1, polynomial2);
+        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
         Assertions.assertEquals(str, "-1+2X^-2");
     }
 
@@ -73,10 +73,9 @@ public class SubtractionTest implements AbstractValidate {
     public void test4() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input6);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input3);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Subtraction subtraction = new Subtraction(result);
-        subtraction.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        polyCalcModel.subtraction(polynomial1, polynomial2);
+        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
         Assertions.assertEquals(str, "-X^2-2");
     }
 }

@@ -1,5 +1,6 @@
 package validateOperations;
 
+import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;
 import com.company.model.operations.Multiplication;
 import com.company.utils.PolynomDisplay;
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class MultiplicationTest implements AbstractValidate {
+
+    private final PolyCalcModel polyCalcModel = new PolyCalcModel();
 
     String string = "x^2+x";
     String input1 = "1.5x^3+x";
@@ -40,10 +43,9 @@ public class MultiplicationTest implements AbstractValidate {
     public void test1() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Multiplication multiplication = new Multiplication(result);
-        multiplication.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        polyCalcModel.multiplication(polynomial1, polynomial2);
+        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
         Assertions.assertEquals(str, "-X^3-X^2");
     }
 
@@ -51,10 +53,9 @@ public class MultiplicationTest implements AbstractValidate {
     public void test2() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input1);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input3);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Multiplication multiplication = new Multiplication(result);
-        multiplication.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        polyCalcModel.multiplication(polynomial1, polynomial2);
+        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
         Assertions.assertEquals(str, "1.50X^5+X^3");
     }
 
@@ -62,10 +63,9 @@ public class MultiplicationTest implements AbstractValidate {
     public void test3() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input4);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input5);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Multiplication multiplication = new Multiplication(result);
-        multiplication.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        polyCalcModel.multiplication(polynomial1, polynomial2);
+        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
         Assertions.assertEquals(str, "4X^3");
     }
 
@@ -73,10 +73,9 @@ public class MultiplicationTest implements AbstractValidate {
     public void test4() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input7);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input8);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Multiplication multiplication = new Multiplication(result);
-        multiplication.calculate(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(result);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        polyCalcModel.multiplication(polynomial1, polynomial2);
+        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
         Assertions.assertEquals(str, "2X-2X^2");
     }
 

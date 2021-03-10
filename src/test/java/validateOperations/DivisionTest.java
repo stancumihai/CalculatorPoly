@@ -1,5 +1,6 @@
 package validateOperations;
 
+import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;
 import com.company.model.operations.Division;
 import com.company.utils.Regex;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class DivisionTest implements AbstractValidate {
+
+    private final PolyCalcModel polyCalcModel = new PolyCalcModel();
 
     String string = "x^2 +x";
     String input1 = "1.5x^3+x";
@@ -39,9 +42,8 @@ public class DivisionTest implements AbstractValidate {
     public void test1() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input1);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Division division = new Division(result);
-        String str=division.giveFinalResult(polynomial1, polynomial2);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        String str = polyCalcModel.division(polynomial1, polynomial2);
         Assertions.assertEquals(str, "0   Rest:(X^2+X/1.50X^3+X)");
     }
 
@@ -49,9 +51,8 @@ public class DivisionTest implements AbstractValidate {
     public void test2() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input3);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Division division = new Division(result);
-        String str=division.giveFinalResult(polynomial1, polynomial2);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        String str = polyCalcModel.division(polynomial1, polynomial2);
         Assertions.assertEquals(str, "0   Rest:(-X/X^2)");
     }
 
@@ -59,9 +60,8 @@ public class DivisionTest implements AbstractValidate {
     public void test3() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input6);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input8);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Division division = new Division(result);
-        String str=division.giveFinalResult(polynomial1, polynomial2);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        String str = polyCalcModel.division(polynomial1, polynomial2);
         Assertions.assertEquals(str, "0   Rest:(-2/X^3-X^4)");
     }
 
@@ -69,9 +69,8 @@ public class DivisionTest implements AbstractValidate {
     public void test4() {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
-        Polynomial result = new Polynomial(new ArrayList<>(5));
-        Division division = new Division(result);
-        String str=division.giveFinalResult(polynomial1, polynomial2);
+        polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+        String str = polyCalcModel.division(polynomial1, polynomial2);
         Assertions.assertEquals(str, "-X-1");
     }
 }
