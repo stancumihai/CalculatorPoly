@@ -70,9 +70,4 @@ public class Division extends AbstractOperationClass<Polynomial> {
         return result;
     }
 
-    public static void invertCoefficients(Polynomial polynom) {
-        for (int i = 0; i < polynom.getPolynom().size(); i++) {
-            polynom.getPolynom().get(i).setCoefficient(-polynom.getPolynom().get(i).getCoefficient());
-        }
-    }
 }
