@@ -47,20 +47,22 @@ public class Division extends AbstractOperationClass<Polynomial> {
     }
 
     public String giveFinalResult(Polynomial polynom1, Polynomial polynom2) {
-        Polynomial aux = new Polynomial(new ArrayList<>());
-        for (Monomial monomial : polynom1.getPolynom()) {
-            aux.getPolynom().add(monomial);
-        }
+        Polynomial polynomial = new Polynomial(new ArrayList<>(100));
+        Polynomial polynomial2 = new Polynomial(new ArrayList<>(100));
+        Multiplication multiplication = new Multiplication(polynomial);
+        Subtraction subtraction = new Subtraction(polynomial2);
 
         calculate(polynom1, polynom2);
+        multiplication.calculate(result, polynom2);
+        subtraction.calculate(polynom1, polynomial);
+
         String polynomRes = PolynomDisplay.constructFromStringToPolynom(result);
-        String numitorRest = PolynomDisplay.constructFromStringToPolynom(polynom1);
-        String numaratorRest = PolynomDisplay.constructFromStringToPolynom(polynom2);
-        System.out.println(polynom1.getPolynom().size());
-        if (polynom1.getPolynom().size() == 1) {
+        String rest = PolynomDisplay.constructFromStringToPolynom(polynomial2);
+
+        if (rest.equals("0")) {
             return polynomRes;
         } else {
-            return polynomRes + " + (" + numitorRest + "\\" + numaratorRest + ")";
+            return polynomRes + "   Rest:(" + rest + "/" + PolynomDisplay.constructFromStringToPolynom(polynom2) + ")";
 
         }
     }
