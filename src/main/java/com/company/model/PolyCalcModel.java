@@ -1,6 +1,5 @@
 package com.company.model;
 
-import com.company.model.operations.Addition;
 import com.company.model.operations.Multiplication;
 import com.company.model.operations.Subtraction;
 import com.company.utils.PolynomDisplay;
@@ -108,6 +107,7 @@ public class PolyCalcModel {
     }
 
     public String division(Polynomial polynom1, Polynomial polynom2) {
+
         Polynomial polynomial = new Polynomial(new ArrayList<>(100));
         Polynomial polynomial2 = new Polynomial(new ArrayList<>(100));
         Multiplication multiplication = new Multiplication(polynomial);
