@@ -204,7 +204,7 @@ public class PolyCalcController {
                 }
             } catch (NotValidDataEntered nde) {
                 nde.printStackTrace();
-                polyCalcView.displayErrorMessage("Bad input in the textField");
+                polyCalcView.displayErrorMessage("Exponents are unordered");
             }
         }
     }
