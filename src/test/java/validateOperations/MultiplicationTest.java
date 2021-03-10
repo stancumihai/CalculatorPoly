@@ -2,7 +2,6 @@ package validateOperations;
 
 import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;
-import com.company.model.operations.Multiplication;
 import com.company.utils.PolynomDisplay;
 import com.company.utils.Regex;
 import com.company.utils.StringToPolynomConverter;

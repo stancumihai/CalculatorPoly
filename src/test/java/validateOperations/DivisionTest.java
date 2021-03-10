@@ -2,7 +2,6 @@ package validateOperations;
 
 import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;
-import com.company.model.operations.Division;
 import com.company.utils.Regex;
 import com.company.utils.StringToPolynomConverter;
 import org.junit.jupiter.api.Assertions;

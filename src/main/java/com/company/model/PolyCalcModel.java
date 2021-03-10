@@ -1,7 +1,5 @@
 package com.company.model;
 
-import com.company.model.operations.Multiplication;
-import com.company.model.operations.Subtraction;
 import com.company.utils.PolynomDisplay;
 import com.company.view.PolyCalcView;
 
@@ -74,8 +72,9 @@ public class PolyCalcModel {
         }
     }
 
-    private void preDivision(Polynomial polynom1, Polynomial polynom2) {
+    private Polynomial preDivision(Polynomial polynom1, Polynomial polynom2) {
 
+        Polynomial res = new Polynomial(new ArrayList<>(100));
         while (polynom1.getPolynom().get(0).getExponent() >= polynom2.getPolynom().get(0).getExponent()) {
             double exponent = polynom1.getPolynom().get(0).getExponent() - polynom2.getPolynom().get(0).getExponent();
             double coefficient = polynom1.getPolynom().get(0).getCoefficient() /
@@ -84,15 +83,16 @@ public class PolyCalcModel {
             Polynomial polynomForMultiplication = new Polynomial(new ArrayList<>(2));
             polynomForMultiplication.getPolynom().add(new Monomial(coefficient, exponent));
 
-            result.getPolynom().add(new Monomial(coefficient, exponent));//aici dau append la cat
+            res.getPolynom().add(new Monomial(coefficient, exponent));//aici dau append la cat
 
             Polynomial firstAux = new Polynomial(new ArrayList<>(100));
-            Multiplication multiplication = new Multiplication(firstAux);
-            multiplication.calculate(polynomForMultiplication, polynom2);
+            setResult(firstAux);
+            multiplication(polynomForMultiplication, polynom2);
 
             Polynomial secondAux = new Polynomial(new ArrayList<>(100));
-            Subtraction subtraction = new Subtraction(secondAux);
-            subtraction.calculate(polynom1, firstAux);
+            setResult(secondAux);
+            subtraction(polynom1, firstAux);
+
 
             polynom1 = new Polynomial(new ArrayList<>(100));
             for (Monomial monomial : secondAux.getPolynom()) {
@@ -102,27 +102,27 @@ public class PolyCalcModel {
                 break;
             }
         }
+        return res;
     }
 
     public String division(Polynomial polynom1, Polynomial polynom2) {
 
         Polynomial polynomial = new Polynomial(new ArrayList<>(100));
         Polynomial polynomial2 = new Polynomial(new ArrayList<>(100));
-        Multiplication multiplication = new Multiplication(polynomial);
-        Subtraction subtraction = new Subtraction(polynomial2);
 
-        preDivision(polynom1, polynom2);
-        multiplication.calculate(result, polynom2);
-        subtraction.calculate(polynom1, polynomial);
+        Polynomial result2 = preDivision(polynom1, polynom2);
+        setResult(polynomial);
+        multiplication(result2, polynom2);
+        setResult(polynomial2);
+        subtraction(polynom1, polynomial);
 
-        String polynomRes = PolynomDisplay.constructFromStringToPolynom(result);
+        String polynomRes = PolynomDisplay.constructFromStringToPolynom(result2);
         String rest = PolynomDisplay.constructFromStringToPolynom(polynomial2);
 
         if (rest.equals("0")) {
             return polynomRes;
         } else {
             return polynomRes + "   Rest:(" + rest + "/" + PolynomDisplay.constructFromStringToPolynom(polynom2) + ")";
-
         }
     }
 
