@@ -3,7 +3,6 @@ package com.company.controller;
 import com.company.exception.NotValidDataEntered;
 import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;
-import com.company.model.operations.*;
 import com.company.utils.PolynomDisplay;
 import com.company.utils.Regex;
 import com.company.utils.StringToPolynomConverter;
@@ -138,7 +137,6 @@ public class PolyCalcController {
                         try {
                             polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
                             polyCalcModel.multiplication(polynomial1, polynomial2);
-                            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
                             polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
 
                         } catch (Exception exception) {
@@ -154,7 +152,6 @@ public class PolyCalcController {
                             } else {
                                 polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
                                 String res = polyCalcModel.division(polynomial1, polynomial2);
-                                //polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(result));
                                 polyCalcView.setPolynomRezField(res);
                             }
                         } catch (Exception exception) {

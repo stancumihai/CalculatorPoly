@@ -41,13 +41,19 @@ public class PolyCalcModel {
     }
 
     public void subtraction(Polynomial polynom1, Polynomial polynom2) {
-        invertCoefficients(polynom2);
+        for (int i = 0; i < polynom2.getPolynom().size(); i++) {
+            polynom2.getPolynom().get(i).setCoefficient(-polynom2.getPolynom().get(i).getCoefficient());
+        }
         addition(polynom1, polynom2);
     }
 
     public void multiplication(Polynomial polynom1, Polynomial polynom2) {
         int i, j;
-        init(polynom1, polynom2);
+
+        for (int k = 0; k < polynom1.getPolynom().size() + polynom2.getPolynom().size() - 1; k++) {
+            result.getPolynom().add(k, new Monomial(0, 0));
+        }
+
         for (i = 0; i < polynom1.getPolynom().size(); i++) {
             for (j = 0; j < polynom2.getPolynom().size(); j++) {
                 double coef = result.getPolynom().get(i + j).getCoefficient() + polynom1.getPolynom().get(i).getCoefficient() *
@@ -64,7 +70,7 @@ public class PolyCalcModel {
         }
         int mySize = result.getPolynom().size();
         for (i = 0; i < mySize; i++) {
-            if (verify(i)) {
+            if (result.getPolynom().get(i).getCoefficient() == 0) {
                 result.getPolynom().remove(i);
                 mySize--;
                 i--;
@@ -152,22 +158,6 @@ public class PolyCalcModel {
             }
             i++;
         }
-    }
-
-    private static void invertCoefficients(Polynomial polynom) {
-        for (int i = 0; i < polynom.getPolynom().size(); i++) {
-            polynom.getPolynom().get(i).setCoefficient(-polynom.getPolynom().get(i).getCoefficient());
-        }
-    }
-
-    private void init(Polynomial polynom1, Polynomial polynom2) {
-        for (int k = 0; k < polynom1.getPolynom().size() + polynom2.getPolynom().size() - 1; k++) {
-            result.getPolynom().add(k, new Monomial(0, 0));
-        }
-    }
-
-    private boolean verify(int index) {
-        return result.getPolynom().get(index).getCoefficient() == 0;
     }
 
     public Polynomial getResult() {
