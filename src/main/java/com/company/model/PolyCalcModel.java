@@ -43,10 +43,8 @@ public class PolyCalcModel {
     }
 
     public void subtraction(Polynomial polynom1, Polynomial polynom2) {
-
         invertCoefficients(polynom2);
         addition(polynom1, polynom2);
-
     }
 
     public void multiplication(Polynomial polynom1, Polynomial polynom2) {
