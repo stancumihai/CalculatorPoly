@@ -5,7 +5,6 @@ import com.company.model.Polynomial;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.function.Predicate;
 
 /**
  * AM luat pe cazurile:
