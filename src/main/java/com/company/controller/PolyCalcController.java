@@ -110,99 +110,129 @@ public class PolyCalcController {
 
                 switch (Objects.requireNonNull(polyCalcView.getSelectOperationsComboBox().getSelectedItem()).toString()) {
                     case "ADD":
-                        try {
-                            polyCalcModel.setResult(new Polynomial(new ArrayList<>(100)));
-                            polyCalcModel.addition(polynomial1, polynomial2);
-                            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-                            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-
-                        } catch (NotValidDataEntered exception) {
-                            exception.printStackTrace();
-                            polyCalcView.displayErrorMessage("Bad input for addition");
-                        }
+                        additionListener(polyCalcModel, polynomValidator, polynomial1, polynomial2, polyCalcView);
                         break;
                     case "SUBTRACT":
-                        try {
-                            polyCalcModel.setResult(new Polynomial(new ArrayList<>()));
-                            polyCalcModel.subtraction(polynomial1, polynomial2);
-                            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-                            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-
-                        } catch (Exception exception) {
-                            exception.printStackTrace();
-                            polyCalcView.displayErrorMessage("Bad input for for subtraction");
-                        }
+                        subtractListener(polyCalcModel, polynomValidator, polynomial1, polynomial2, polyCalcView);
                         break;
                     case "MULTIPLY":
-                        try {
-                            polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
-                            polyCalcModel.multiplication(polynomial1, polynomial2);
-                            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-
-                        } catch (Exception exception) {
-                            exception.printStackTrace();
-                            polyCalcView.displayErrorMessage("Bad input for multiplication");
-                        }
+                        multiplyListener(polyCalcModel, polynomValidator, polynomial1, polynomial2, polyCalcView);
                         break;
                     case "DIVIDE":
-                        try {
-
-                            if (polynomial2.getPolynom().size() == 0) {
-                                JOptionPane.showMessageDialog(polyCalcView, "Cannot Divide with 0");
-                            } else {
-                                polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
-                                String res = polyCalcModel.division(polynomial1, polynomial2);
-                                polyCalcView.setPolynomRezField(res);
-                            }
-                        } catch (Exception exception) {
-                            exception.printStackTrace();
-                            polyCalcView.displayErrorMessage("Bad input for division");
-                        }
+                        divisionListener(polyCalcModel, polynomValidator, polynomial1, polynomial2, polyCalcView);
                         break;
                     case "INTEGRATE":
-                        try {
-
-                            polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
-                            if (Objects.equals(polyCalcView.getSelectPolynomsComboBox().getSelectedItem(), "1")) {
-                                polyCalcModel.integration(polynomial1);
-                            } else {
-                                polyCalcModel.integration(polynomial2);
-                            }
-                            polynomValidator.validate(Regex.getRegex(),
-                                    PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-                            polyCalcView.setPolynomRezField(PolynomDisplay.
-                                    constructFromStringToPolynom(polyCalcModel.getResult()));
-
-                        } catch (Exception exception) {
-                            exception.printStackTrace();
-                            polyCalcView.displayErrorMessage("Bad input for integration");
-                        }
+                        integrateListener(polyCalcModel, polynomValidator, polynomial1, polynomial2, polyCalcView);
                         break;
                     case "DERIVATE":
-                        try {
-
-                            polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
-
-                            if (Objects.equals(polyCalcView.getSelectPolynomsComboBox().getSelectedItem(), "1")) {
-                                polyCalcModel.derivation(polynomial1);
-                            } else {
-                                polyCalcModel.derivation(polynomial2);
-                            }
-                            polynomValidator.validate(Regex.getRegex(),
-                                    PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-                            polyCalcView.setPolynomRezField(PolynomDisplay
-                                    .constructFromStringToPolynom(polyCalcModel.getResult()));
-
-                        } catch (Exception exception) {
-                            exception.printStackTrace();
-                            polyCalcView.displayErrorMessage("Bad input for derivation");
-                        }
+                        derivateListener(polyCalcModel, polynomValidator, polynomial1, polynomial2, polyCalcView);
                         break;
                 }
             } catch (NotValidDataEntered nde) {
                 nde.printStackTrace();
                 polyCalcView.displayErrorMessage("Exponents are unordered");
             }
+        }
+    }
+
+
+    private static void additionListener(PolyCalcModel polyCalcModel, PolynomValidator polynomValidator,
+                                         Polynomial polynomial1, Polynomial polynomial2, PolyCalcView polyCalcView) {
+        try {
+            polyCalcModel.setResult(new Polynomial(new ArrayList<>(100)));
+            polyCalcModel.addition(polynomial1, polynomial2);
+            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+
+        } catch (NotValidDataEntered exception) {
+            exception.printStackTrace();
+            polyCalcView.displayErrorMessage("Bad input for addition");
+        }
+    }
+
+    private static void subtractListener(PolyCalcModel polyCalcModel, PolynomValidator polynomValidator,
+                                         Polynomial polynomial1, Polynomial polynomial2, PolyCalcView polyCalcView) {
+        try {
+            polyCalcModel.setResult(new Polynomial(new ArrayList<>()));
+            polyCalcModel.subtraction(polynomial1, polynomial2);
+            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            polyCalcView.displayErrorMessage("Bad input for for subtraction");
+        }
+    }
+
+    private static void multiplyListener(PolyCalcModel polyCalcModel, PolynomValidator polynomValidator,
+                                         Polynomial polynomial1, Polynomial polynomial2, PolyCalcView polyCalcView) {
+        try {
+            polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+            polyCalcModel.multiplication(polynomial1, polynomial2);
+            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            polyCalcView.displayErrorMessage("Bad input for multiplication");
+        }
+    }
+
+    private static void divisionListener(PolyCalcModel polyCalcModel, PolynomValidator polynomValidator,
+                                         Polynomial polynomial1, Polynomial polynomial2, PolyCalcView polyCalcView) {
+        try {
+
+            if (polynomial2.getPolynom().size() == 0) {
+                JOptionPane.showMessageDialog(polyCalcView, "Cannot Divide with 0");
+            } else {
+                polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+                String res = polyCalcModel.division(polynomial1, polynomial2);
+                polyCalcView.setPolynomRezField(res);
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            polyCalcView.displayErrorMessage("Bad input for division");
+        }
+    }
+
+    private static void derivateListener(PolyCalcModel polyCalcModel, PolynomValidator polynomValidator,
+                                         Polynomial polynomial1, Polynomial polynomial2, PolyCalcView polyCalcView) {
+        try {
+            polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+
+            if (Objects.equals(polyCalcView.getSelectPolynomsComboBox().getSelectedItem(), "1")) {
+                polyCalcModel.derivation(polynomial1);
+            } else {
+                polyCalcModel.derivation(polynomial2);
+            }
+            polynomValidator.validate(Regex.getRegex(),
+                    PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+            polyCalcView.setPolynomRezField(PolynomDisplay
+                    .constructFromStringToPolynom(polyCalcModel.getResult()));
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            polyCalcView.displayErrorMessage("Bad input for derivation");
+        }
+    }
+
+    private static void integrateListener(PolyCalcModel polyCalcModel, PolynomValidator polynomValidator,
+                                          Polynomial polynomial1, Polynomial polynomial2, PolyCalcView polyCalcView) {
+        try {
+
+            polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
+            if (Objects.equals(polyCalcView.getSelectPolynomsComboBox().getSelectedItem(), "1")) {
+                polyCalcModel.integration(polynomial1);
+            } else {
+                polyCalcModel.integration(polynomial2);
+            }
+            polynomValidator.validate(Regex.getRegex(),
+                    PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+            polyCalcView.setPolynomRezField(PolynomDisplay.
+                    constructFromStringToPolynom(polyCalcModel.getResult()));
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            polyCalcView.displayErrorMessage("Bad input for integration");
         }
     }
 }

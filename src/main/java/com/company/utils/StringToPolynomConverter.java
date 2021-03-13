@@ -70,11 +70,14 @@ public class StringToPolynomConverter {
             }
         }
 
+        return constructPol(coefficients,exponents);
+    }
+
+    public static Polynomial constructPol(ArrayList<Double> coefficients, ArrayList<Double> exponents) {
         Polynomial polynom = new Polynomial(new ArrayList<>(100));
         for (int i = 0; i < coefficients.size(); i++) {
             polynom.getPolynom().add(new Monomial(coefficients.get(i), exponents.get(i)));
         }
-
         return polynom;
     }
 }

@@ -140,6 +140,7 @@ public class PolyCalcModel {
             double exponent = input.getPolynom().get(i).getExponent() + 1;
             if (exponent == 0) {
                 JOptionPane.showMessageDialog(new PolyCalcView(), "The result of x^-1 is ln(x)");
+                break;
             }
             if (coefficient != 0) {
                 result.getPolynom().add(new Monomial(coefficient, exponent));

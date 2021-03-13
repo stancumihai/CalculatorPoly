@@ -5,7 +5,7 @@ import com.company.model.Polynomial;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
+import java.util.function.Predicate;
 
 /**
  * AM luat pe cazurile:
@@ -58,9 +58,7 @@ public class PolynomDisplay {
                     } else {
                         if (coefDecimal.doubleValue() == -1) {
                             if (expDecimal.intValue() != expDecimal.doubleValue()) {
-                                myPolynom.append("-")
-                                        .append("X^")
-                                        .append(expDecimal.doubleValue());
+                                myPolynom.append("-").append("X^").append(expDecimal.doubleValue());
                             } else {
                                 myPolynom.append("-")
                                         .append("X^")
@@ -69,25 +67,21 @@ public class PolynomDisplay {
                         } else {
                             if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
                                 if (expDecimal.intValue() != expDecimal.doubleValue()) {
-                                    myPolynom
-                                            .append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
+                                    myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
                                             .append("X^")
                                             .append(expDecimal.doubleValue());
                                 } else {
-                                    myPolynom
-                                            .append(coefDecimal.doubleValue())
+                                    myPolynom.append(coefDecimal.doubleValue())
                                             .append("X^")
                                             .append(expDecimal.intValue());
                                 }
                             } else {
                                 if (expDecimal.intValue() != expDecimal.doubleValue()) {
-                                    myPolynom
-                                            .append(coefDecimal.intValue())
+                                    myPolynom.append(coefDecimal.intValue())
                                             .append("X^")
                                             .append(expDecimal.doubleValue());
                                 } else {
-                                    myPolynom
-                                            .append(coefDecimal.intValue())
+                                    myPolynom.append(coefDecimal.intValue())
                                             .append("X^")
                                             .append(expDecimal.intValue());
                                 }
@@ -95,6 +89,7 @@ public class PolynomDisplay {
                         }
                     }
                 } else {
+                   
                     if (coefDecimal.doubleValue() >= 0) {
                         if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
                             myPolynom.append("+")
@@ -107,15 +102,13 @@ public class PolynomDisplay {
                         }
                     } else {
                         if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
-                            myPolynom
-                                    .append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
+                            myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
                                     .append("X");
                         } else {
                             if (coefDecimal.intValue() == -1) {
                                 myPolynom.append("-X");
                             } else {
-                                myPolynom
-                                        .append(coefDecimal.intValue())
+                                myPolynom.append(coefDecimal.intValue())
                                         .append("X");
                             }
                         }
@@ -137,7 +130,6 @@ public class PolynomDisplay {
                     myPolynom.append("+")
                             .append("X");
                 }
-
             } else {
                 if (coefDecimal.doubleValue() >= 0) {
                     if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
@@ -160,8 +152,8 @@ public class PolynomDisplay {
             }
         }
 
-        if (myPolynom.length() > 0 && myPolynom.charAt(myPolynom.toString().length() - 1) == '+') { //** aici anulez plusul de la final**//
-
+        if (myPolynom.length() > 0 && myPolynom.charAt(myPolynom.toString().length() - 1) == '+') {
+            //** aici anulez plusul de la final**//
             myPolynom.setLength(myPolynom.length() - 1);
         }
         if (myPolynom.length() == 0) {
