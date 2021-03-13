@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
  */
 public class StringToPolynomConverter {
 
-
     public static Polynomial regEx(String theRegex, String stringToCheck) {
 
         Pattern checkRegEx = Pattern.compile(theRegex);

@@ -5,6 +5,7 @@ import com.company.model.Polynomial;
 import com.company.utils.Regex;
 import com.company.utils.StringToPolynomConverter;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class DivisionTest implements AbstractValidate {
     String input12 = "x^-1+x^-5";
 
     @Override
-    @Test
+    @RepeatedTest(5)
     public void validate() {
 
         test1();
