@@ -27,130 +27,13 @@ public class PolynomDisplay {
             BigDecimal expDecimal = new BigDecimal(String.valueOf(monomial.getExponent()));
 
             if (coefDecimal.doubleValue() != 1 && expDecimal.doubleValue() != 0) {
-                if (expDecimal.doubleValue() != 1) {
-                    if (coefDecimal.doubleValue() >= 0) {
-                        if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
-                            if (expDecimal.intValue() != expDecimal.doubleValue()) {
-                                myPolynom.append("+")
-                                        .append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
-                                        .append("x^")
-                                        .append(expDecimal.doubleValue());
-                            } else {
-                                myPolynom.append("+")
-                                        .append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
-                                        .append("X^")
-                                        .append(expDecimal.intValue());
-                            }
-                        } else {
-                            if (expDecimal.intValue() != expDecimal.doubleValue()) {
-                                myPolynom.append("+")
-                                        .append(coefDecimal.intValue())
-                                        .append("X^")
-                                        .append(expDecimal.doubleValue());
-                            } else {
-                                myPolynom.append("+")
-                                        .append(coefDecimal.intValue())
-                                        .append("X^")
-                                        .append(expDecimal.intValue());
-                            }
-                        }
-                    } else {
-                        if (coefDecimal.doubleValue() == -1) {
-                            if (expDecimal.intValue() != expDecimal.doubleValue()) {
-                                myPolynom.append("-").append("X^").append(expDecimal.doubleValue());
-                            } else {
-                                myPolynom.append("-")
-                                        .append("X^")
-                                        .append(expDecimal.intValue());
-                            }
-                        } else {
-                            if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
-                                if (expDecimal.intValue() != expDecimal.doubleValue()) {
-                                    myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
-                                            .append("X^")
-                                            .append(expDecimal.doubleValue());
-                                } else {
-                                    myPolynom.append(coefDecimal.doubleValue())
-                                            .append("X^")
-                                            .append(expDecimal.intValue());
-                                }
-                            } else {
-                                if (expDecimal.intValue() != expDecimal.doubleValue()) {
-                                    myPolynom.append(coefDecimal.intValue())
-                                            .append("X^")
-                                            .append(expDecimal.doubleValue());
-                                } else {
-                                    myPolynom.append(coefDecimal.intValue())
-                                            .append("X^")
-                                            .append(expDecimal.intValue());
-                                }
-                            }
-                        }
-                    }
-                } else {
-                   
-                    if (coefDecimal.doubleValue() >= 0) {
-                        if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
-                            myPolynom.append("+")
-                                    .append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
-                                    .append("X");
-                        } else {
-                            myPolynom.append("+")
-                                    .append(coefDecimal.intValue())
-                                    .append("X");
-                        }
-                    } else {
-                        if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
-                            myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
-                                    .append("X");
-                        } else {
-                            if (coefDecimal.intValue() == -1) {
-                                myPolynom.append("-X");
-                            } else {
-                                myPolynom.append(coefDecimal.intValue())
-                                        .append("X");
-                            }
-                        }
-                    }
-                }
+                case1(myPolynom, coefDecimal, expDecimal);
             } else if (coefDecimal.doubleValue() == 1 && expDecimal.doubleValue() != 0) {
-
-                if (expDecimal.doubleValue() != 1) {
-                    if (expDecimal.doubleValue() != expDecimal.intValue()) {
-                        myPolynom.append("+")
-                                .append("X^")
-                                .append(expDecimal.doubleValue());
-                    } else {
-                        myPolynom.append("+")
-                                .append("X^")
-                                .append(expDecimal.intValue());
-                    }
-                } else {
-                    myPolynom.append("+")
-                            .append("X");
-                }
+                case2(myPolynom, coefDecimal, expDecimal);
             } else {
-                if (coefDecimal.doubleValue() >= 0) {
-                    if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
-                        myPolynom.append("+")
-                                .append(coefDecimal.setScale(2, RoundingMode.HALF_UP));
-                    } else {
-                        myPolynom.append("+")
-                                .append(coefDecimal.intValue());
-                    }
-
-                } else {
-                    if (coefDecimal.doubleValue() != -1) {
-                        if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
-                            myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP));
-                        } else {
-                            myPolynom.append(coefDecimal.intValue());
-                        }
-                    } else myPolynom.append("-1");
-                }
+                case3(myPolynom, coefDecimal, expDecimal);
             }
         }
-
         if (myPolynom.length() > 0 && myPolynom.charAt(myPolynom.toString().length() - 1) == '+') {
             //** aici anulez plusul de la final**//
             myPolynom.setLength(myPolynom.length() - 1);
@@ -160,5 +43,118 @@ public class PolynomDisplay {
         } else if (myPolynom.charAt(0) == '+') {
             return myPolynom.substring(1, myPolynom.length());/** Cu substring (1,lenght anulez acel plus din fata)**/
         } else return myPolynom.toString();
+    }
+
+
+    private static void case1(StringBuilder myPolynom, BigDecimal coefDecimal, BigDecimal expDecimal) {
+        if (expDecimal.doubleValue() != 1) {
+            case11(myPolynom, coefDecimal, expDecimal);
+        } else {
+            case12(myPolynom, coefDecimal, expDecimal);
+        }
+    }
+
+    private static void case11(StringBuilder myPolynom, BigDecimal coefDecimal, BigDecimal expDecimal) {
+        if (coefDecimal.doubleValue() >= 0) {
+            if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
+                if (expDecimal.intValue() != expDecimal.doubleValue()) {
+                    myPolynom.append("+").append(coefDecimal.setScale(2, RoundingMode.HALF_UP)).append("x^").append(expDecimal.doubleValue());
+                } else {
+                    myPolynom.append("+").append(coefDecimal.setScale(2, RoundingMode.HALF_UP)).append("X^").append(expDecimal.intValue());
+                }
+            } else {
+                if (expDecimal.intValue() != expDecimal.doubleValue()) {
+                    myPolynom.append("+").append(coefDecimal.intValue()).append("X^").append(expDecimal.doubleValue());
+                } else {
+                    myPolynom.append("+").append(coefDecimal.intValue()).append("X^").append(expDecimal.intValue());
+                }
+            }
+        } else {
+            if (coefDecimal.doubleValue() == -1) {
+                if (expDecimal.intValue() != expDecimal.doubleValue()) {
+                    myPolynom.append("-").append("X^").append(expDecimal.doubleValue());
+                } else {
+                    myPolynom.append("-").append("X^").append(expDecimal.intValue());
+                }
+            } else {
+                if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
+                    if (expDecimal.intValue() != expDecimal.doubleValue()) {
+                        myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP)).append("X^").append(expDecimal.doubleValue());
+                    } else {
+                        myPolynom.append(coefDecimal.doubleValue()).append("X^").append(expDecimal.intValue());
+                    }
+                } else {
+                    if (expDecimal.intValue() != expDecimal.doubleValue()) {
+                        myPolynom.append(coefDecimal.intValue()).append("X^").append(expDecimal.doubleValue());
+                    } else {
+                        myPolynom.append(coefDecimal.intValue()).append("X^").append(expDecimal.intValue());
+                    }
+                }
+            }
+        }
+    }
+
+    private static void case12(StringBuilder myPolynom, BigDecimal coefDecimal, BigDecimal expDecimal) {
+        if (coefDecimal.doubleValue() >= 0) {
+            if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
+                myPolynom.append("+")
+                        .append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
+                        .append("X");
+            } else {
+                myPolynom.append("+")
+                        .append(coefDecimal.intValue())
+                        .append("X");
+            }
+        } else {
+            if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
+                myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
+                        .append("X");
+            } else {
+                if (coefDecimal.intValue() == -1) {
+                    myPolynom.append("-X");
+                } else {
+                    myPolynom.append(coefDecimal.intValue())
+                            .append("X");
+                }
+            }
+        }
+    }
+
+    private static void case2(StringBuilder myPolynom, BigDecimal coefDecimal, BigDecimal expDecimal) {
+        if (expDecimal.doubleValue() != 1) {
+            if (expDecimal.doubleValue() != expDecimal.intValue()) {
+                myPolynom.append("+")
+                        .append("X^")
+                        .append(expDecimal.doubleValue());
+            } else {
+                myPolynom.append("+")
+                        .append("X^")
+                        .append(expDecimal.intValue());
+            }
+        } else {
+            myPolynom.append("+")
+                    .append("X");
+        }
+    }
+
+    private static void case3(StringBuilder myPolynom, BigDecimal coefDecimal, BigDecimal expDecimal) {
+        if (coefDecimal.doubleValue() >= 0) {
+            if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
+                myPolynom.append("+")
+                        .append(coefDecimal.setScale(2, RoundingMode.HALF_UP));
+            } else {
+                myPolynom.append("+")
+                        .append(coefDecimal.intValue());
+            }
+
+        } else {
+            if (coefDecimal.doubleValue() != -1) {
+                if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
+                    myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP));
+                } else {
+                    myPolynom.append(coefDecimal.intValue());
+                }
+            } else myPolynom.append("-1");
+        }
     }
 }

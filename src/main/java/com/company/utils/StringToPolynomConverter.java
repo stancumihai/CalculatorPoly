@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
  */
 public class StringToPolynomConverter {
 
+
     public static Polynomial regEx(String theRegex, String stringToCheck) {
 
         Pattern checkRegEx = Pattern.compile(theRegex);
@@ -22,58 +23,67 @@ public class StringToPolynomConverter {
         while (regexMatcher.find()) {
             if (regexMatcher.group().length() != 0) {
                 if (regexMatcher.group(4) == null) {
-                    if (regexMatcher.group(3) == null) {
-                        if (regexMatcher.group(1).equals("-")) {
-                            if (regexMatcher.group(2).isEmpty()) {
-                                coefficients.add(-Double.parseDouble("1"));
-                            } else {
-                                coefficients.add(-Double.parseDouble(regexMatcher.group(2)));
-                            }
-                        } else {
-                            if (regexMatcher.group(2).isEmpty()) {
-                                coefficients.add(Double.parseDouble("1"));
-                            } else coefficients.add(Double.parseDouble(regexMatcher.group(2)));
-                        }
-                        exponents.add(Double.parseDouble("0"));
-                    } else {
-                        if (regexMatcher.group(1).equals("-")) {
-                            if (regexMatcher.group(2).isEmpty()) {
-                                coefficients.add(-Double.parseDouble("1"));
-                            } else {
-                                coefficients.add(-Double.parseDouble(regexMatcher.group(2)));
-                            }
-                        } else {
-                            if (regexMatcher.group(2).isEmpty()) {
-                                coefficients.add(Double.parseDouble("1"));
-                            } else {
-                                coefficients.add(Double.parseDouble(regexMatcher.group(2)));
-                            }
-                        }
-                        exponents.add(Double.parseDouble("1"));
-                    }
+                    case1(coefficients, exponents, regexMatcher);
                 } else {
-                    if (regexMatcher.group(1).equals("-")) {
-                        if (regexMatcher.group(2).isEmpty()) {
-                            coefficients.add(Double.parseDouble("-1"));
-                        } else {
-                            coefficients.add(Double.parseDouble("-" + regexMatcher.group(2)));
-                        }
-                    } else {
-                        if (regexMatcher.group(2).isEmpty()) {
-                            coefficients.add(Double.parseDouble("1"));
-                        } else {
-                            coefficients.add(Double.parseDouble(regexMatcher.group(2)));
-                        }
-                    }
-                    exponents.add(Double.parseDouble(String.valueOf(regexMatcher.group(4)).substring(1)));
+                    case2(coefficients, exponents, regexMatcher);
                 }
             }
         }
 
-        return constructPol(coefficients,exponents);
+        return constructPol(coefficients, exponents);
     }
 
-    public static Polynomial constructPol(ArrayList<Double> coefficients, ArrayList<Double> exponents) {
+    private static void case1(ArrayList<Double> coefficients, ArrayList<Double> exponents, Matcher regexMatcher) {
+        if (regexMatcher.group(3) == null) {
+            if (regexMatcher.group(1).equals("-")) {
+                if (regexMatcher.group(2).isEmpty()) {
+                    coefficients.add(-Double.parseDouble("1"));
+                } else {
+                    coefficients.add(-Double.parseDouble(regexMatcher.group(2)));
+                }
+            } else {
+                if (regexMatcher.group(2).isEmpty()) {
+                    coefficients.add(Double.parseDouble("1"));
+                } else coefficients.add(Double.parseDouble(regexMatcher.group(2)));
+            }
+            exponents.add(Double.parseDouble("0"));
+        } else {
+            if (regexMatcher.group(1).equals("-")) {
+                if (regexMatcher.group(2).isEmpty()) {
+                    coefficients.add(-Double.parseDouble("1"));
+                } else {
+                    coefficients.add(-Double.parseDouble(regexMatcher.group(2)));
+                }
+            } else {
+                if (regexMatcher.group(2).isEmpty()) {
+                    coefficients.add(Double.parseDouble("1"));
+                } else {
+                    coefficients.add(Double.parseDouble(regexMatcher.group(2)));
+                }
+            }
+            exponents.add(Double.parseDouble("1"));
+        }
+    }
+
+    private static void case2(ArrayList<Double> coefficients, ArrayList<Double> exponents, Matcher regexMatcher) {
+        if (regexMatcher.group(1).equals("-")) {
+            if (regexMatcher.group(2).isEmpty()) {
+                coefficients.add(Double.parseDouble("-1"));
+            } else {
+                coefficients.add(Double.parseDouble("-" + regexMatcher.group(2)));
+            }
+        } else {
+            if (regexMatcher.group(2).isEmpty()) {
+                coefficients.add(Double.parseDouble("1"));
+            } else {
+                coefficients.add(Double.parseDouble(regexMatcher.group(2)));
+            }
+        }
+        exponents.add(Double.parseDouble(String.valueOf(regexMatcher.group(4)).substring(1)));
+    }
+
+
+    private static Polynomial constructPol(ArrayList<Double> coefficients, ArrayList<Double> exponents) {
         Polynomial polynom = new Polynomial(new ArrayList<>(100));
         for (int i = 0; i < coefficients.size(); i++) {
             polynom.getPolynom().add(new Monomial(coefficients.get(i), exponents.get(i)));
