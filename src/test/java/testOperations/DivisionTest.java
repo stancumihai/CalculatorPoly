@@ -1,4 +1,4 @@
-package validateOperations;
+package testOperations;
 
 import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;

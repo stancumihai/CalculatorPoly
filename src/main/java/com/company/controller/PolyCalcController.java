@@ -180,7 +180,8 @@ public class PolyCalcController {
     private static void divisionListener(PolyCalcModel polyCalcModel, PolynomValidator polynomValidator,
                                          Polynomial polynomial1, Polynomial polynomial2, PolyCalcView polyCalcView) {
         try {
-            if (polynomial2.getPolynom().size() == 0) {
+            if (polynomial2.getPolynom().size() == 0 ||
+                    (polynomial2.getPolynom().get(0).getCoefficient() == 0 && polynomial2.getPolynom().size() == 1)) {
                 JOptionPane.showMessageDialog(polyCalcView, "Cannot Divide with 0");
             } else {
                 polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));

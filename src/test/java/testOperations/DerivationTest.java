@@ -1,4 +1,4 @@
-package validateOperations;
+package testOperations;
 
 import com.company.model.PolyCalcModel;
 import com.company.model.Polynomial;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-public class SubtractionTest implements AbstractValidate {
+public class DerivationTest implements AbstractValidate {
 
     private final PolyCalcModel polyCalcModel = new PolyCalcModel();
 
@@ -41,41 +41,37 @@ public class SubtractionTest implements AbstractValidate {
 
     @Test
     public void test1() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
-        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input1);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
-        polyCalcModel.subtraction(polynomial1, polynomial2);
+        polyCalcModel.derivation(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
-        Assertions.assertEquals(str, "X^2+2X");
+        Assertions.assertEquals(str, "4.50X^2+1");
     }
 
     @Test
     public void test2() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input4);
-        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input12);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
-        polyCalcModel.subtraction(polynomial1, polynomial2);
+        polyCalcModel.derivation(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
-        Assertions.assertEquals(str, "-2X^2-X^-1-X^-5");
+        Assertions.assertEquals(str, "-1");
     }
 
     @Test
     public void test3() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input7);
-        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input9);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input10);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
-        polyCalcModel.subtraction(polynomial1, polynomial2);
+        polyCalcModel.derivation(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
-        Assertions.assertEquals(str, "-1+2X^-2");
+        Assertions.assertEquals(str, "0");
     }
 
     @Test
     public void test4() {
-        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input6);
-        Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input3);
+        Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input12);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
-        polyCalcModel.subtraction(polynomial1, polynomial2);
+        polyCalcModel.derivation(polynomial1);
         String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
-        Assertions.assertEquals(str, "-X^2-2");
+        Assertions.assertEquals(str, "-X^-2-5X^-6");
     }
 }
