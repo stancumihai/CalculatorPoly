@@ -55,10 +55,9 @@ public class PolynomValidator {
 
         ArrayList<Character> toSort = new ArrayList<>();
         for (Character character : exponents.toString().toCharArray()) {
-            toSort.add(character);
-            if (charExists(character, toSort)) {
+            if (charExists(character, toSort))
                 return true;
-            }
+            toSort.add(character);
         }
 
         toSort.sort((o1, o2) -> -o1.compareTo(o2));
