@@ -59,7 +59,7 @@ public class PolyCalcController {
                     }
                 }
 
-            } catch (Exception exception) {
+            } catch (NotValidDataEntered exception) {
                 exception.printStackTrace();
                 polyCalcView.displayErrorMessage("Bad input");
             }
@@ -79,7 +79,7 @@ public class PolyCalcController {
                 } else {
                     polyCalcView.getPolynomRezField().setText(null);
                 }
-            } catch (Exception exception) {
+            } catch (NotValidDataEntered exception) {
                 exception.printStackTrace();
                 polyCalcView.displayErrorMessage("Bad input");
             }
@@ -158,7 +158,7 @@ public class PolyCalcController {
             polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
             polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
 
-        } catch (Exception exception) {
+        } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
             polyCalcView.displayErrorMessage("Bad input for for subtraction");
         }
@@ -171,7 +171,7 @@ public class PolyCalcController {
             polyCalcModel.multiplication(polynomial1, polynomial2);
             polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
 
-        } catch (Exception exception) {
+        } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
             polyCalcView.displayErrorMessage("Bad input for multiplication");
         }
@@ -188,7 +188,7 @@ public class PolyCalcController {
                 String res = polyCalcModel.division(polynomial1, polynomial2);
                 polyCalcView.setPolynomRezField(res);
             }
-        } catch (Exception exception) {
+        } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
             polyCalcView.displayErrorMessage("Bad input for division");
         }
@@ -209,7 +209,7 @@ public class PolyCalcController {
             polyCalcView.setPolynomRezField(PolynomDisplay
                     .constructFromStringToPolynom(polyCalcModel.getResult()));
 
-        } catch (Exception exception) {
+        } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
             polyCalcView.displayErrorMessage("Bad input for derivation");
         }
@@ -230,7 +230,7 @@ public class PolyCalcController {
             polyCalcView.setPolynomRezField(PolynomDisplay.
                     constructFromStringToPolynom(polyCalcModel.getResult()));
 
-        } catch (Exception exception) {
+        } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
             polyCalcView.displayErrorMessage("Bad input for integration");
         }
