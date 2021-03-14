@@ -22,7 +22,7 @@ public class PolynomValidator {
         }
     }
 
-    public boolean checkIfNotCorrect(String stringToCheck) {
+    private boolean checkIfNotCorrect(String stringToCheck) {
 
         if (stringToCheck.charAt(0) != '-' && stringToCheck.charAt(0) != '+') {
             stringToCheck = stringToCheck.replace(stringToCheck, "+" + stringToCheck);
@@ -32,7 +32,7 @@ public class PolynomValidator {
         return !validate;
     }
 
-    public boolean checkIfExponentsAreNotCorrect(String theRegex, String stringToCheck) {
+    private boolean checkIfExponentsAreNotCorrect(String theRegex, String stringToCheck) {
         Pattern checkRegEx = Pattern.compile(theRegex);
         Matcher regexMatcher = checkRegEx.matcher(stringToCheck);
         StringBuilder exponents = new StringBuilder();
@@ -52,14 +52,12 @@ public class PolynomValidator {
                 }
             }
         }
-
         ArrayList<Character> toSort = new ArrayList<>();
         for (Character character : exponents.toString().toCharArray()) {
             if (charExists(character, toSort))
                 return true;
             toSort.add(character);
         }
-
         toSort.sort((o1, o2) -> -o1.compareTo(o2));
         for (int i = 0; i < exponents.toString().length(); i++) {
             if (exponents.toString().charAt(i) != toSort.get(i))
@@ -68,7 +66,7 @@ public class PolynomValidator {
         return false;
     }
 
-    boolean charExists(Character character, ArrayList<Character> charList) {
+    private boolean charExists(Character character, ArrayList<Character> charList) {
         for (Character myCharacter : charList) {
             if (myCharacter.equals(character)) {
                 return true;

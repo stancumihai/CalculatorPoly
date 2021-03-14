@@ -130,7 +130,7 @@ public class PolyCalcController {
                 }
             } catch (NotValidDataEntered nde) {
                 nde.printStackTrace();
-                polyCalcView.displayErrorMessage("Exponents are unordered");
+                polyCalcView.displayErrorMessage(nde.getMessage());
             }
         }
     }

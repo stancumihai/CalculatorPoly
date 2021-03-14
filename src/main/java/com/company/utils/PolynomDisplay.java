@@ -9,8 +9,8 @@ import java.math.RoundingMode;
 /**
  * AM luat pe cazurile:
  * 1) exponentul nu e 0 si coeficientul nu e 1
- * - daca exponentul e 1
- * - daca coeficientul e mai are sau nu decat 0(asta o verific pentru cazul in care avem un nr cu - si sa nu avem +- la afisare
+ *  - daca exponentul e 1
+ *   - daca coeficientul e mai are sau nu decat 0(asta o verific pentru cazul in care avem un nr cu - si sa nu avem +- la afisare
  * 2) exponentul nu e 0 si coeficientul e 1
  * - daca exponentul e 1
  * 3) exponentul e 0 si coeficentul e oricat
@@ -97,24 +97,18 @@ public class PolynomDisplay {
     private static void case12(StringBuilder myPolynom, BigDecimal coefDecimal, BigDecimal expDecimal) {
         if (coefDecimal.doubleValue() >= 0) {
             if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
-                myPolynom.append("+")
-                        .append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
-                        .append("X");
+                myPolynom.append("+").append(coefDecimal.setScale(2, RoundingMode.HALF_UP)).append("X");
             } else {
-                myPolynom.append("+")
-                        .append(coefDecimal.intValue())
-                        .append("X");
+                myPolynom.append("+").append(coefDecimal.intValue()).append("X");
             }
         } else {
             if (coefDecimal.intValue() != coefDecimal.doubleValue()) {
-                myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP))
-                        .append("X");
+                myPolynom.append(coefDecimal.setScale(2, RoundingMode.HALF_UP)).append("X");
             } else {
                 if (coefDecimal.intValue() == -1) {
                     myPolynom.append("-X");
                 } else {
-                    myPolynom.append(coefDecimal.intValue())
-                            .append("X");
+                    myPolynom.append(coefDecimal.intValue()).append("X");
                 }
             }
         }
@@ -123,28 +117,21 @@ public class PolynomDisplay {
     private static void case2(StringBuilder myPolynom, BigDecimal coefDecimal, BigDecimal expDecimal) {
         if (expDecimal.doubleValue() != 1) {
             if (expDecimal.doubleValue() != expDecimal.intValue()) {
-                myPolynom.append("+")
-                        .append("X^")
-                        .append(expDecimal.doubleValue());
+                myPolynom.append("+").append("X^").append(expDecimal.doubleValue());
             } else {
-                myPolynom.append("+")
-                        .append("X^")
-                        .append(expDecimal.intValue());
+                myPolynom.append("+").append("X^").append(expDecimal.intValue());
             }
         } else {
-            myPolynom.append("+")
-                    .append("X");
+            myPolynom.append("+").append("X");
         }
     }
 
     private static void case3(StringBuilder myPolynom, BigDecimal coefDecimal, BigDecimal expDecimal) {
         if (coefDecimal.doubleValue() >= 0) {
             if (coefDecimal.doubleValue() != coefDecimal.intValue()) {
-                myPolynom.append("+")
-                        .append(coefDecimal.setScale(2, RoundingMode.HALF_UP));
+                myPolynom.append("+").append(coefDecimal.setScale(2, RoundingMode.HALF_UP));
             } else {
-                myPolynom.append("+")
-                        .append(coefDecimal.intValue());
+                myPolynom.append("+").append(coefDecimal.intValue());
             }
 
         } else {
