@@ -18,7 +18,7 @@ import java.math.RoundingMode;
  **/
 public class PolynomDisplay {
 
-    public static String constructFromStringToPolynom(Polynomial polynom) {
+    public static String constructFromPolynomToString(Polynomial polynom) {
 
         StringBuilder myPolynom = new StringBuilder();
         for (Monomial monomial : polynom.getPolynom()) {

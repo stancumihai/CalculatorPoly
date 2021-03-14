@@ -29,7 +29,7 @@ public class testPolynomDisplay implements AbstractValidate {
         polynomial.getPolynom().add(monomial1);
         polynomial.getPolynom().add(monomial2);
 
-        String res = PolynomDisplay.constructFromStringToPolynom(polynomial);
+        String res = PolynomDisplay.constructFromPolynomToString(polynomial);
         Assertions.assertEquals(res, "2X^3+2X^3");
     }
 
@@ -41,7 +41,7 @@ public class testPolynomDisplay implements AbstractValidate {
         polynomial.getPolynom().add(monomial1);
         polynomial.getPolynom().add(monomial2);
 
-        String res = PolynomDisplay.constructFromStringToPolynom(polynomial);
+        String res = PolynomDisplay.constructFromPolynomToString(polynomial);
         Assertions.assertEquals(res, "X^3+4X^5");
     }
 
@@ -53,7 +53,7 @@ public class testPolynomDisplay implements AbstractValidate {
         polynomial.getPolynom().add(monomial1);
         polynomial.getPolynom().add(monomial2);
 
-        String res = PolynomDisplay.constructFromStringToPolynom(polynomial);
+        String res = PolynomDisplay.constructFromPolynomToString(polynomial);
         Assertions.assertEquals(res, "6X^3+2X^8");
     }
 
@@ -65,7 +65,7 @@ public class testPolynomDisplay implements AbstractValidate {
         polynomial.getPolynom().add(monomial1);
         polynomial.getPolynom().add(monomial2);
 
-        String res = PolynomDisplay.constructFromStringToPolynom(polynomial);
+        String res = PolynomDisplay.constructFromPolynomToString(polynomial);
         Assertions.assertEquals(res, "X^7+2X^3");
     }
 }

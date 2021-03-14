@@ -122,13 +122,13 @@ public class PolyCalcModel {
         setResult(polynomial2);
         subtraction(polynom1, polynomial);
 
-        String polynomRes = PolynomDisplay.constructFromStringToPolynom(result2);
-        String rest = PolynomDisplay.constructFromStringToPolynom(polynomial2);
+        String polynomRes = PolynomDisplay.constructFromPolynomToString(result2);
+        String rest = PolynomDisplay.constructFromPolynomToString(polynomial2);
 
         if (rest.equals("0")) {
             return polynomRes;
         } else {
-            return polynomRes + "   Rest:(" + rest + "/" + PolynomDisplay.constructFromStringToPolynom(polynom2) + ")";
+            return polynomRes + "   Rest:(" + rest + "/" + PolynomDisplay.constructFromPolynomToString(polynom2) + ")";
         }
     }
 

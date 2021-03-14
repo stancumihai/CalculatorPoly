@@ -105,8 +105,8 @@ public class PolyCalcController {
                 Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), polyCalcView.getPolynom1Field().getText());
                 Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), polyCalcView.getPolynom2Field().getText());
 
-                polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polynomial1));
-                polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polynomial2));
+                polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromPolynomToString(polynomial1));
+                polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromPolynomToString(polynomial2));
 
                 switch (Objects.requireNonNull(polyCalcView.getSelectOperationsComboBox().getSelectedItem()).toString()) {
                     case "ADD":
@@ -141,8 +141,8 @@ public class PolyCalcController {
         try {
             polyCalcModel.setResult(new Polynomial(new ArrayList<>(100)));
             polyCalcModel.addition(polynomial1, polynomial2);
-            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult()));
+            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult()));
 
         } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
@@ -155,8 +155,8 @@ public class PolyCalcController {
         try {
             polyCalcModel.setResult(new Polynomial(new ArrayList<>()));
             polyCalcModel.subtraction(polynomial1, polynomial2);
-            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
-            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+            polynomValidator.validate(Regex.getRegex(), PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult()));
+            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult()));
 
         } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
@@ -169,7 +169,7 @@ public class PolyCalcController {
         try {
             polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
             polyCalcModel.multiplication(polynomial1, polynomial2);
-            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+            polyCalcView.setPolynomRezField(PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult()));
 
         } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
@@ -205,9 +205,9 @@ public class PolyCalcController {
                 polyCalcModel.derivation(polynomial2);
             }
             polynomValidator.validate(Regex.getRegex(),
-                    PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+                    PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult()));
             polyCalcView.setPolynomRezField(PolynomDisplay
-                    .constructFromStringToPolynom(polyCalcModel.getResult()));
+                    .constructFromPolynomToString(polyCalcModel.getResult()));
 
         } catch (NotValidDataEntered exception) {
             exception.printStackTrace();
@@ -226,9 +226,9 @@ public class PolyCalcController {
                 polyCalcModel.integration(polynomial2);
             }
             polynomValidator.validate(Regex.getRegex(),
-                    PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult()));
+                    PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult()));
             polyCalcView.setPolynomRezField(PolynomDisplay.
-                    constructFromStringToPolynom(polyCalcModel.getResult()));
+                    constructFromPolynomToString(polyCalcModel.getResult()));
 
         } catch (NotValidDataEntered exception) {
             exception.printStackTrace();

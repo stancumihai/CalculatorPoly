@@ -45,7 +45,7 @@ public class MultiplicationTest implements AbstractValidate {
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
         polyCalcModel.multiplication(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
+        String str = PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult());
         Assertions.assertEquals(str, "-X^3-X^2");
     }
 
@@ -55,7 +55,7 @@ public class MultiplicationTest implements AbstractValidate {
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input3);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
         polyCalcModel.multiplication(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
+        String str = PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult());
         Assertions.assertEquals(str, "1.50X^5+X^3");
     }
 
@@ -65,7 +65,7 @@ public class MultiplicationTest implements AbstractValidate {
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input5);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
         polyCalcModel.multiplication(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
+        String str = PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult());
         Assertions.assertEquals(str, "4X^3");
     }
 
@@ -75,7 +75,7 @@ public class MultiplicationTest implements AbstractValidate {
         Polynomial polynomial2 = StringToPolynomConverter.regEx(Regex.getRegex(), input8);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
         polyCalcModel.multiplication(polynomial1, polynomial2);
-        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
+        String str = PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult());
         Assertions.assertEquals(str, "2X-2X^2");
     }
 

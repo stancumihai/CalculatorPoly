@@ -44,7 +44,7 @@ public class IntegrationTest implements AbstractValidate {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), string);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
         polyCalcModel.integration(polynomial1);
-        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
+        String str = PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult());
         Assertions.assertEquals(str, "0.33X^3+0.50X^2");
     }
 
@@ -53,7 +53,7 @@ public class IntegrationTest implements AbstractValidate {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input2);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
         polyCalcModel.integration(polynomial1);
-        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
+        String str = PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult());
         Assertions.assertEquals(str, "-0.5X^2");
     }
 
@@ -62,7 +62,7 @@ public class IntegrationTest implements AbstractValidate {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input10);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
         polyCalcModel.integration(polynomial1);
-        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
+        String str = PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult());
         Assertions.assertEquals(str, "-X");
     }
 
@@ -71,7 +71,7 @@ public class IntegrationTest implements AbstractValidate {
         Polynomial polynomial1 = StringToPolynomConverter.regEx(Regex.getRegex(), input12);
         polyCalcModel.setResult(new Polynomial(new ArrayList<>(5)));
         polyCalcModel.integration(polynomial1);
-        String str = PolynomDisplay.constructFromStringToPolynom(polyCalcModel.getResult());
+        String str = PolynomDisplay.constructFromPolynomToString(polyCalcModel.getResult());
         Assertions.assertEquals(str, "0");
     }
 }
